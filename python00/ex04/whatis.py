@@ -1,5 +1,6 @@
 import sys
 
+
 def main(args):
     if len(args) > 2:
         print('AssertionError: more than one argument is provided')
@@ -15,6 +16,7 @@ def main(args):
         except IndexError:
             pass
     print()
+
 
 args = sys.argv
 
