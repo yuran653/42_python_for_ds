@@ -1,5 +1,5 @@
 # Project files
-
+python00/*/tester.py
 
 # Byte-compiled / optimized / DLL files
 __pycache__/
@@ -131,7 +131,7 @@ celerybeat.pid
 *.sage.py
 
 # Environments
-lg_venv/
+ds00_venv/
 .env
 .venv
 env/
