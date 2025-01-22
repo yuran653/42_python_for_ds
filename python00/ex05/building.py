@@ -32,7 +32,7 @@ def building(string: str) -> None:
 
 def read_argv() -> str:
     """
-    Reads the input text to be analyzed from command-line arguments or user input
+    Reads the text to be analyzed from command-line arguments or user input
 
     Returns: str: the text to analyze
 
