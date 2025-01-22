@@ -1,15 +1,24 @@
 # ft_package
 
-Simple Python package for counting string occurrences in a list.
+## Overview
+A simple Python package demonstrating list string counting functionality.
 
 ## Installation
-`pip install ft_package`
+pip install ft_package
 
 ## Usage
-
 from ft_package import count_in_list
-my_list = ['apple', 'banana', 'apple']
-result = count_in_list(my_list, 'apple') # Returns 2
+Example
+my_list = ['apple', 'banana', 'apple', 'cherry']
+result = count_in_list(my_list, 'apple')
+print(result) # Output: 2
+
+## Features
+- Count occurrences of a string in a list
+- Simple and lightweight
 
 ## Author
-jgoldste
+jgoldste (jgoldste@student.42bangkok.com)
+
+## License
+MIT License
