@@ -3,9 +3,18 @@
 ## Overview
 A simple Python package demonstrating list string counting functionality
 
+## Building package
+```
+flit build
+```
+
 ## Installation
 ```
-pip install ft_package
+pip install dist/ft_package-0.0.1-py2.py3-none-any.whl
+```
+or
+```
+pip install dist/ft_package-0.0.1.tar.gz
 ```
 
 ## Usage
