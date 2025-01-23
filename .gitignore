@@ -1,5 +1,5 @@
 # Project files
-python00/*/tester.py
+tester.py
 
 # Byte-compiled / optimized / DLL files
 __pycache__/

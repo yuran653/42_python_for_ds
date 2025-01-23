@@ -4,7 +4,7 @@ YELLOW='\033[0;33m'
 GREEN='\033[0;32m'
 NC='\033[0m'
 
-NAME='ds00_venv'
+NAME='ds01_venv'
 
 echo -e "${YELLOW}Creating Python virtual environment ${NAME}...${NC}"
 python3 -m venv ${NAME}
