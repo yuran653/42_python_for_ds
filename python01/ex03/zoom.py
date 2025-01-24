@@ -1,7 +1,7 @@
 import numpy as np
 
 
-def rotate_1024x768_to_400x400(np_image: np.ndarray) -> np.ndarray:
+def zoom_1024x768_to_400x400(np_image: np.ndarray) -> np.ndarray:
     """
     Resize and crop a 1024x768 RGB image to a 400x400 grayscale image
 
@@ -32,17 +32,16 @@ def rotate_1024x768_to_400x400(np_image: np.ndarray) -> np.ndarray:
         # # Converts the image to grayscale by averaging the RGB channels
         # gray_np_image = np.mean(np_image, axis=2)
 
-        # Define cropping starting points
+        # Defines cropping starting points
         start_x = (gray_np_image.shape[1] - 574)
         start_y = (gray_np_image.shape[0] - 668)
 
-        # Crop the grayscale image to a 400x400
+        # Crops the grayscale image to a 400x400
         cropped_np_image = gray_np_image[
             start_y:start_y + 400,
             start_x:start_x + 400]
 
-        # Transpose, convert to uint8, and reshape for the output
-        cropped_np_image = np.transpose(cropped_np_image)
+        # Converts to uint8, and reshapes for the output
         cropped_np_image = cropped_np_image.astype(np.uint8)
         cropped_np_image = np.reshape(cropped_np_image, (400, 400, 1))
 
