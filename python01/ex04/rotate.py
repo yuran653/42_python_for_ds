@@ -3,15 +3,16 @@ import numpy as np
 
 def rotate_1024x768_to_400x400(np_image: np.ndarray) -> np.ndarray:
     """
-    Resize and crop a 1024x768 RGB image to a 400x400 grayscale image
+    Resize and crop a 1024x768 RGB image to a 400x400 grayscale image,
+    and transpose it
 
     Args:
     - np_image (np.ndarray): input image as a 3D NumPy array
                              of shape (768, 1024, 3) with RGB channels
 
     Returns:
-    - np.ndarray: cropped grayscale image as a 3D NumPy array
-                  of shape (400, 400, 1), or None if an error occurs
+    - np.ndarray: cropped and transposed grayscale image as a 3D NumPy
+                array of shape (400, 400, 1), or None if an error occurs
 
     Raises:
     - ValueError: if the input image is None, has an invalid shape,
@@ -44,7 +45,6 @@ def rotate_1024x768_to_400x400(np_image: np.ndarray) -> np.ndarray:
         # Transpose, convert to uint8, and reshape for the output
         cropped_np_image = np.transpose(cropped_np_image)
         cropped_np_image = cropped_np_image.astype(np.uint8)
-        cropped_np_image = np.reshape(cropped_np_image, (400, 400, 1))
 
         print(f'New shape after slicing: {cropped_np_image.shape}')
 
