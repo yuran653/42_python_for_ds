@@ -49,6 +49,6 @@ def rotate_1024x768_to_400x400(np_image: np.ndarray) -> np.ndarray:
         print(f'New shape after slicing: {cropped_np_image.shape}')
 
         return cropped_np_image
-    except Exception as e:
-        print(f'zoom(): {e}')
+    except ValueError as e:
+        print(f'ValueError: zoom(): {e}')
         return None

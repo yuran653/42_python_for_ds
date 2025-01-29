@@ -35,8 +35,11 @@ def give_bmi(
             raise ValueError(
                 'Passed arrays must be not empty and have equal length')
         return (np_weights / (np_heights ** 2)).tolist()
-    except Exception as e:
-        print(f'give_bmi(): {e}')
+    except TypeError as e:
+        print(f'TypeError: give_bmi(): {e}')
+        return None
+    except ValueError as e:
+        print(f'ValueError: give_bmi(): {e}')
         return None
 
 
@@ -67,6 +70,6 @@ def apply_limit(
         if not np.issubdtype(np_bmi.dtype, np.number):
             raise TypeError("'bmi' list must contain only numeric values")
         return (np_bmi > limit).tolist()
-    except Exception as e:
-        print(f'apply_limit(): {e}')
+    except TypeError as e:
+        print(f'TypeError: apply_limit(): {e}')
         return None

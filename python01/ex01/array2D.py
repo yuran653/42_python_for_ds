@@ -28,6 +28,6 @@ def slice_me(family: list, start: int, end: int) -> list:
         sliced_np_family = np_family[start:end]
         print(f'My new shape is : {sliced_np_family.shape}')
         return sliced_np_family.tolist()
-    except Exception as e:
-        print(f'slice_me(): {e}')
+    except TypeError as e:
+        print(f'TypeError: slice_me(): {e}')
         return None

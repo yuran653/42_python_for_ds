@@ -25,6 +25,9 @@ def ft_load(path: str) -> np.ndarray:
         with PIL.Image.open(path) as image:
             np_image = np.array(image)
             return np_image
-    except Exception as e:
-        print(f'ft_load(): {e}')
+    except ValueError as e:
+        print(f'ValueError: ft_load(): {e}')
+        return None
+    except TypeError as e:
+        print(f'TypeError: ft_load(): {e}')
         return None
