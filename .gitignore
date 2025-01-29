@@ -1,8 +1,8 @@
 # Project files
-show.py
 tester.py
 *.jpg
 *.jpeg
+*.csv
 
 # Byte-compiled / optimized / DLL files
 __pycache__/
