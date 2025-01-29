@@ -1,15 +1,14 @@
 import numpy as np
-import PIL
 
 
 def ft_invert(array: np.ndarray) -> np.ndarray:
     """
     Inverts the colors of an image by subtracting each pixel value from 255
-    
+
     Parameters:
     - array (np.ndarray): input image array of shape (height, width, channels)
                           with values in range [0, 255]
-    
+
     Returns:
     - np.ndarray: inverted image array of same shape as input, or None if error
     """
@@ -23,17 +22,17 @@ def ft_invert(array: np.ndarray) -> np.ndarray:
     return inverted_array
 
 
-
 def ft_red(array: np.ndarray) -> np.ndarray:
     """
-    Isolates the red channel of an image by setting green and blue channels to zero
-    
+    Isolates the red channel of an image by setting green
+             and blue channels to zero
+
     Parameters:
     - array (np.ndarray): input image array of shape (height, width, channels)
                           with values in range [0, 255]
-    
+
     Returns:
-    - np.ndarray: red channel isolated image array of same shape as input, 
+    - np.ndarray: red channel isolated image array of same shape as input,
                   or None if error
     """
     # Allowed operators for the function: =, *
@@ -50,12 +49,13 @@ def ft_red(array: np.ndarray) -> np.ndarray:
 
 def ft_green(array: np.ndarray) -> np.ndarray:
     """
-    Isolates the green channel of an image by setting red and blue channels to zero
-    
+    Isolates the green channel of an image by setting red
+             and blue channels to zero
+
     Parameters:
     - array (np.ndarray): input image array of shape (height, width, channels)
                           with values in range [0, 255]
-    
+
     Returns:
     - np.ndarray: green channel isolated image array of same shape as input,
                   or None if error
@@ -74,12 +74,13 @@ def ft_green(array: np.ndarray) -> np.ndarray:
 
 def ft_blue(array: np.ndarray) -> np.ndarray:
     """
-    Isolates the blue channel of an image by setting red and green channels to zero
-    
+    Isolates the blue channel of an image by setting red
+             and green channels to zero
+
     Parameters:
     - array (np.ndarray): input image array of shape (height, width, channels)
                           with values in range [0, 255]
-    
+
     Returns:
     - np.ndarray: blue channel isolated image array of same shape as input,
                   or None if error
@@ -99,13 +100,14 @@ def ft_blue(array: np.ndarray) -> np.ndarray:
 def ft_grey(array: np.ndarray) -> np.ndarray:
     """
     Converts an RGB image to grayscale by averaging the color channels.
-    
+
     Parameters:
     - array (np.ndarray): input image array of shape (height, width, channels)
                           with values in range [0, 255]
-    
+
     Returns:
-    - np.ndarray: grayscale image array of same shape as input, or None if error
+    - np.ndarray: grayscale image array of same shape as input,
+                  or None if error
     """
     # Allowed operators for the function: =, /
     mean_array = np.mean(array, axis=2)
