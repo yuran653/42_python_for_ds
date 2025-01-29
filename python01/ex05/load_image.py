@@ -24,7 +24,6 @@ def ft_load(path: str) -> np.ndarray:
             raise TypeError("'path' must be a string")
         with PIL.Image.open(path) as image:
             np_image = np.array(image)
-            print(f'The shape of image is: {np_image.shape}')
             return np_image
     except Exception as e:
         print(f'ft_load(): {e}')
