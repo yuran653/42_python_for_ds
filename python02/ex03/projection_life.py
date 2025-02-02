@@ -4,6 +4,19 @@ from load_csv import load
 
 
 def show_plot(year: str) -> None:
+    """
+    Creates and displays a scatter plot comparing life expectancy
+    versus GDP for all countries in a specified year
+
+    Parameters:
+    - year (str): the year for which to create the visualization
+
+    Returns:
+    - None: displays the plot directly
+
+    Raises:
+    - KeyError: if the specified year is not found in the datasets
+    """
     df_income = load(
         'income_per_person_gdppercapita_ppp_inflation_adjusted.csv')
     df_life = load('life_expectancy_years.csv')
@@ -16,9 +29,13 @@ def show_plot(year: str) -> None:
     if df_income.index.equals(df_life.index) == False:
         print('Countries in datasets do not match')
         return
-
-    year_life = df_life[year]
-    year_income = df_income[year]
+    
+    try:
+        year_life = df_life[year]
+        year_income = df_income[year]
+    except KeyError:
+        print(f'No data found for year: {year}')
+        return
 
     life_rows_with_nan = year_life[year_life.isna()]
     income_rows_with_nan = year_income[year_income.isna()]
