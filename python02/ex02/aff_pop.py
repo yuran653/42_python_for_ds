@@ -59,7 +59,7 @@ def show_plot(df_path: str, country1: str, country2: str) -> None:
 
     Returns:
     - None: Displays the plot directly
-    
+
     Raises:
     - KeyError: if specified countries are not found in the dataset
     """
@@ -90,7 +90,7 @@ def show_plot(df_path: str, country1: str, country2: str) -> None:
 
     plt.figure(figsize=(16, 12))
     plt.plot(x_years, y_population1,
-             label=country1, 
+             label=country1,
              linewidth=3,
              color='#2D2A4A')
     plt.plot(x_years, y_population2,
@@ -101,7 +101,7 @@ def show_plot(df_path: str, country1: str, country2: str) -> None:
     plt.xlabel('Years')
     plt.ylabel('Population')
     plt.legend()
-    plt.xlim(1800,2050)
+    plt.xlim(1800, 2050)
     plt.gca().yaxis.set_major_formatter(ticker.FuncFormatter(num_formater))
     plt.show()
 

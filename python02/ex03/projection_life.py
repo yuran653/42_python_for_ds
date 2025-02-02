@@ -22,14 +22,14 @@ def show_plot(year: str) -> None:
     df_life = load('life_expectancy_years.csv')
     if df_income is None or df_life is None:
         return
-    
+
     df_income.set_index('country', inplace=True)
     df_life.set_index('country', inplace=True)
 
-    if df_income.index.equals(df_life.index) == False:
+    if df_income.index.equals(df_life.index) is False:
         print('Countries in datasets do not match')
         return
-    
+
     try:
         year_life = df_life[year]
         year_income = df_income[year]
@@ -59,11 +59,12 @@ def show_plot(year: str) -> None:
                     c=year_income.index.map(color_map),
                     legend=False)
     plt.title('The projection of life expectancy in relation to the GDP'
-          f' of the year {year} for each country')
+              f' of the year {year} for each country')
     plt.xlabel('Gross Domestic Product')
     plt.ylabel('Life expectancy')
     plt.legend()
-    plt.gca().xaxis.set_major_formatter(plt.FuncFormatter(lambda x, _: f'{int(x/1000)}k'))
+    plt.gca().xaxis.set_major_formatter(
+        plt.FuncFormatter(lambda x, _: f'{int(x/1000)}k'))
     plt.show()
 
 
