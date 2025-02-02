@@ -41,7 +41,10 @@ def show_plot(df_path: str, country: str) -> None:
     x_years = df.columns.values.astype(int)
     y_life_expect = df.loc[country].to_numpy()
 
-    plt.plot(x_years, y_life_expect,
+    plt.figure(figsize=(16, 12))
+    plt.plot(x_years,
+             y_life_expect,
+             linewidth=3,
              label=f'{country} life expectancy projection')
     plt.ylabel('Life expectancy')
     plt.xlabel('Years')

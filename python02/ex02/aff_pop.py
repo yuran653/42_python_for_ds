@@ -88,6 +88,7 @@ def show_plot(df_path: str, country1: str, country2: str) -> None:
     y_population1 = df.loc[country1].apply(num_string_convert)
     y_population2 = df.loc[country2].apply(num_string_convert)
 
+    plt.figure(figsize=(16, 12))
     plt.plot(x_years, y_population1,
              label=country1, 
              linewidth=3,
