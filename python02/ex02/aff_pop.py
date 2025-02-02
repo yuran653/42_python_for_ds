@@ -1,4 +1,4 @@
-import numpy as np
+# import numpy as np
 import matplotlib.pyplot as plt
 import matplotlib.ticker as ticker
 from load_csv import load
@@ -79,9 +79,14 @@ def show_plot(df_path: str, country1: str, country2: str) -> None:
     y_population1 = df.loc[country1]
     y_population2 = df.loc[country2]
 
-    vectorized_func = np.vectorize(num_string_convert)
-    y_population1 = vectorized_func(y_population1)
-    y_population2 = vectorized_func(y_population2)
+    # vectorized_func = np.vectorize(num_string_convert)
+    # y_population1 = vectorized_func(y_population1)
+    # y_population2 = vectorized_func(y_population2)
+
+    # For the strict following to the subfect requirements
+    # I will use less efficient 'apply' method
+    y_population1 = df.loc[country1].apply(num_string_convert)
+    y_population2 = df.loc[country2].apply(num_string_convert)
 
     plt.plot(x_years, y_population1,
              label=country1, 
