@@ -1,9 +1,9 @@
-import pandas as pd
+import matplotlib.pyplot as plt
+import seaborn as sns
 from load_csv import load
 
 
-
-def show_plot() -> None:
+def show_plot(year: str) -> None:
     df_income = load(
         'income_per_person_gdppercapita_ppp_inflation_adjusted.csv')
     df_life = load('life_expectancy_years.csv')
@@ -13,26 +13,42 @@ def show_plot() -> None:
     df_income.set_index('country', inplace=True)
     df_life.set_index('country', inplace=True)
 
-    df_income.columns = df_income.columns.astype(int)
-    df_life.columns = df_life.columns.astype(int)
+    if df_income.index.equals(df_life.index) == False:
+        print('Countries in datasets do not match')
+        return
 
-    life_drop_columns = list(range(2051, 2101))
-    df_life.drop(columns=life_drop_columns, axis=1, inplace=True)
+    year_life = df_life[year]
+    year_income = df_income[year]
 
-    life_rows_with_nan = df_life[df_life.isna().any(axis=1)]
-    income_rows_with_nan = df_income[df_income.isna().any(axis=1)]
+    life_rows_with_nan = year_life[year_life.isna()]
+    income_rows_with_nan = year_income[year_income.isna()]
 
     life_rows_with_nan = life_rows_with_nan.index.tolist()
     income_rows_with_nan = income_rows_with_nan.index.tolist()
 
     countries_to_drop = life_rows_with_nan + income_rows_with_nan
 
-    df_life.drop(countries_to_drop, axis=0, inplace=True)
-    df_income.drop(countries_to_drop, axis=0, inplace=True)
+    year_life.drop(countries_to_drop, axis=0, inplace=True)
+    year_income.drop(countries_to_drop, axis=0, inplace=True)
 
-    print(df_income.shape)
-    print(df_life.shape)
+    pallete = 'dark:salmon_r'
+    color_labels = year_income.index.unique()
+    rgb_values = sns.color_palette(pallete, len(color_labels))
+    color_map = dict(zip(color_labels, rgb_values))
+
+    plt.figure(figsize=(16, 12))
+    sns.scatterplot(x=year_income,
+                    y=year_life,
+                    c=year_income.index.map(color_map),
+                    legend=False)
+    plt.title('The projection of life expectancy in relation to the GDP'
+          f' of the year {year} for each country')
+    plt.xlabel('Gross Domestic Product')
+    plt.ylabel('Life expectancy')
+    plt.legend()
+    plt.gca().xaxis.set_major_formatter(plt.FuncFormatter(lambda x, _: f'{int(x/1000)}k'))
+    plt.show()
 
 
 if __name__ == '__main__':
-    show_plot()
+    show_plot('1900')
