@@ -34,7 +34,7 @@ def num_formater(num: int, _) -> str:
 
 def num_string_convert(num: str) -> int:
     """
-    Converta a string numbers with M/k suffixes to integer values
+    Converts a string numbers with M/k suffixes to integer values
 
     Parameters:
     - num (str): number string possibly containing M/k suffix
@@ -50,29 +50,44 @@ def num_string_convert(num: str) -> int:
 
 def show_plot(df_path: str, country1: str, country2: str) -> None:
     """
-    Creates and displays a population comparison plot for two countries
+    Creates and displays a line plot showing population projection
+    for two specified countries
 
     Parameters:
     - df_path (str): path to the CSV file containing population data
-    - country1 (str): name of the 1st country to plot
-    - country2 (str): name of the 2nd country to plot
+    - country1 (str): name of the first country to visualize data for
+    - country2 (str): name of the second country to visualize data for
 
     Returns:
-    - None: Displays the plot directly
+    - None: function displays the plot and doesn't return any value
 
-    Raises:
-    - KeyError: if specified countries are not found in the dataset
+    Plot details:
+    - X-axis: years
+    - Y-axis: population values
+    - Figure size: 16x12 inches
+    - Line width: 3 points
+
+    Exceptions that could be raised:
+    - TypeError: when data contains non-numeric values for plotting
+    - AttributeError: if DataFrame operations fail due to invalid structure
+
+    Dependencies:
+    - matplotlib.pyplot: for plotting
+    - matplotlib.ticker: for custom axis formatting
+    - load_csv.load: for CSV loading with error handling
     """
     df = load(df_path)
     if df is None:
         return
 
     df.set_index('country', inplace=True)
-    try:
-        df.loc[country1]
-        df.loc[country2]
-    except KeyError as e:
-        print(f'No data found for country: {e}')
+
+    if not df.index.isin([country1, country2]).all():
+        print(f'No data found for country: {country1} or {country2}')
+        return
+    
+    if not all(col.isdigit() for col in df.columns):
+        print("Dataset error: year columns are not all integers")
         return
 
     x_years = df.columns.values.astype(int)
@@ -107,4 +122,4 @@ def show_plot(df_path: str, country1: str, country2: str) -> None:
 
 
 if __name__ == '__main__':
-    show_plot('population_total.csv', 'Thailand', 'South Korea')
+    show_plot('population_total.csv', 'Thailand', 'South  Korea')

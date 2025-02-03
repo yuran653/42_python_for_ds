@@ -15,27 +15,35 @@ def show_plot(df_path: str, country: str) -> None:
     - None: function displays the plot and doesn't return any value
 
     Plot details:
-    - X-axis: Years
-    - Y-axis: Life expectancy values
-    - Title: Automatically generated using country name
+    - X-axis: years
+    - Y-axis: life expectancy values
+    - Figure size: 16x12 inches
+    - Line width: 3 points
 
-    Exceptions handled:
-    - KeyError: when the specified country is not found in the dataset
-    - Any exceptions from load_csv.load function
+    Exceptions that could be raised:
+    - TypeError: when data contains non-numeric values for plotting
+    - AttributeError: if DataFrame operations fail due to invalid structure
 
     Dependencies:
     - matplotlib.pyplot: for plotting
-    - load_csv.load: for loading the CSV file
+    - load_csv.load: for CSV loading with error handling
     """
     df = load(df_path)
     if df is None:
         return
+    
+    if 'country' not in df.columns:
+        print("Dataset error: missing 'country' column")
+        return
 
     df.set_index('country', inplace=True)
-    try:
-        df.loc[country]
-    except KeyError:
-        print(f'No data found for country: {country}')
+
+    if country not in df.index:
+        print(f'Dataset error: no data found for country: {country}')
+        return
+    
+    if not all(col.isdigit() for col in df.columns):
+        print("Dataset error: year columns are not all integers")
         return
 
     x_years = df.columns.values.astype(int)
@@ -48,12 +56,8 @@ def show_plot(df_path: str, country: str) -> None:
              label=f'{country} life expectancy projection')
     plt.ylabel('Life expectancy')
     plt.xlabel('Years')
-    plt.show()
-
-
-def main():
-    show_plot('life_expectancy_years.csv', 'Thailand')
+    plt.show()    
 
 
 if __name__ == '__main__':
-    main()
+    show_plot('life_expectancy_years.csv', 'Thailand')
