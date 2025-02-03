@@ -85,7 +85,7 @@ def show_plot(df_path: str, country1: str, country2: str) -> None:
     if not df.index.isin([country1, country2]).all():
         print(f'No data found for country: {country1} or {country2}')
         return
-    
+
     if not all(col.isdigit() for col in df.columns):
         print("Dataset error: year columns are not all integers")
         return

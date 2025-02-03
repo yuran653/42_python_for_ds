@@ -31,7 +31,7 @@ def show_plot(df_path: str, country: str) -> None:
     df = load(df_path)
     if df is None:
         return
-    
+
     if 'country' not in df.columns:
         print("Dataset error: missing 'country' column")
         return
@@ -41,7 +41,7 @@ def show_plot(df_path: str, country: str) -> None:
     if country not in df.index:
         print(f'Dataset error: no data found for country: {country}')
         return
-    
+
     if not all(col.isdigit() for col in df.columns):
         print("Dataset error: year columns are not all integers")
         return
@@ -56,7 +56,7 @@ def show_plot(df_path: str, country: str) -> None:
              label=f'{country} life expectancy projection')
     plt.ylabel('Life expectancy')
     plt.xlabel('Years')
-    plt.show()    
+    plt.show()
 
 
 if __name__ == '__main__':

@@ -2,6 +2,7 @@ import matplotlib.pyplot as plt
 import seaborn as sns
 from load_csv import load
 
+
 def num_string_convert(num: any) -> int:
     """
     Converts a string numbers with M/k suffixes to integer values
@@ -14,11 +15,11 @@ def num_string_convert(num: any) -> int:
     """
     if isinstance(num, int):
         return num
-    
+
     num_suffix = {"M": 10**6, "k": 10**3}
     if num[-1] in num_suffix.keys():
         return int(float(num[:-1]) * num_suffix[num[-1]])
-    
+
     return int(num)
 
 
@@ -53,7 +54,7 @@ def show_plot(year: str) -> None:
     df_life = load('life_expectancy_years.csv')
     if df_income is None or df_life is None:
         return
-    
+
     df_income.set_index('country', inplace=True)
     df_life.set_index('country', inplace=True)
 
