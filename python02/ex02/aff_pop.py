@@ -82,7 +82,7 @@ def show_plot(df_path: str, country1: str, country2: str) -> None:
 
     df.set_index('country', inplace=True)
 
-    if not df.index.isin([country1, country2]).all():
+    if not country1 in df.index or not country2 in df.index:
         print(f'No data found for country: {country1} or {country2}')
         return
 
@@ -91,15 +91,6 @@ def show_plot(df_path: str, country1: str, country2: str) -> None:
         return
 
     x_years = df.columns.values.astype(int)
-    y_population1 = df.loc[country1]
-    y_population2 = df.loc[country2]
-
-    # vectorized_func = np.vectorize(num_string_convert)
-    # y_population1 = vectorized_func(y_population1)
-    # y_population2 = vectorized_func(y_population2)
-
-    # For the strict following to the subfect requirements
-    # I will use less efficient 'apply' method
     y_population1 = df.loc[country1].apply(num_string_convert)
     y_population2 = df.loc[country2].apply(num_string_convert)
 
@@ -112,14 +103,14 @@ def show_plot(df_path: str, country1: str, country2: str) -> None:
              label=country2,
              linewidth=3,
              color='#D52B1E')
-    plt.title(f'Population projection for {country1} and {country2}')
+    plt.title(f'Population Projections for {country1} and {country2}')
     plt.xlabel('Years')
     plt.ylabel('Population')
     plt.legend()
     plt.xlim(1800, 2050)
     plt.gca().yaxis.set_major_formatter(ticker.FuncFormatter(num_formater))
-    plt.show()
+    plt.savefig('aff_pop.png', bbox_inches='tight', format='png')
 
 
 if __name__ == '__main__':
-    show_plot('population_total.csv', 'Thailand', 'South  Korea')
+    show_plot('population_total.csv', 'Thailand', 'South Korea')

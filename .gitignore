@@ -3,6 +3,7 @@ tester.py
 *.jpg
 *.jpeg
 *.csv
+*.png
 
 # Byte-compiled / optimized / DLL files
 __pycache__/

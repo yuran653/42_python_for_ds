@@ -52,11 +52,11 @@ def show_plot(df_path: str, country: str) -> None:
     plt.figure(figsize=(16, 12))
     plt.plot(x_years,
              y_life_expect,
-             linewidth=3,
-             label=f'{country} life expectancy projection')
+             linewidth=3)
+    plt.title(f'{country} Life Expactancy Projection')
     plt.ylabel('Life expectancy')
     plt.xlabel('Years')
-    plt.show()
+    plt.savefig('aff_life.png', bbox_inches='tight', format='png')
 
 
 if __name__ == '__main__':

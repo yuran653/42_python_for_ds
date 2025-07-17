@@ -34,3 +34,6 @@ def load(path: str) -> pd.DataFrame:
     except pd.errors.ParserError:
         print(f'Parser error: load(): {path}')
         return None
+    
+if __name__ == "__main__":
+    load('life_expectancy_years.csv')

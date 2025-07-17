@@ -69,35 +69,18 @@ def show_plot(year: str) -> None:
     year_life = df_life[year]
     year_income = df_income[year].apply(num_string_convert)
 
-    life_rows_with_nan = year_life[year_life.isna()]
-    income_rows_with_nan = year_income[year_income.isna()]
-
-    life_rows_with_nan = life_rows_with_nan.index.tolist()
-    income_rows_with_nan = income_rows_with_nan.index.tolist()
-
-    countries_to_drop = life_rows_with_nan + income_rows_with_nan
-
-    year_life.drop(countries_to_drop, axis=0, inplace=True)
-    year_income.drop(countries_to_drop, axis=0, inplace=True)
-
-    pallete = 'dark:salmon_r'
-    color_labels = year_income.index.unique()
-    rgb_values = sns.color_palette(pallete, len(color_labels))
-    color_map = dict(zip(color_labels, rgb_values))
-
     plt.figure(figsize=(16, 12))
     sns.scatterplot(x=year_income,
                     y=year_life,
-                    hue=color_labels,
-                    palette=color_map,
-                    legend=False)
-    plt.title('The projection of life expectancy in relation to the GDP'
+                    legend=False,
+                    s=100)
+    plt.title('The Projection of Life Expectancy in Relation to the GDP'
               f' of the year {year} for each country')
     plt.xlabel('Gross Domestic Product')
     plt.ylabel('Life expectancy')
     plt.gca().xaxis.set_major_formatter(
         plt.FuncFormatter(lambda x, _: f'{int(x/(1000))}k'))
-    plt.show()
+    plt.savefig(f'projection_life_{year}.png', bbox_inches='tight', format='png')
 
 
 if __name__ == '__main__':
