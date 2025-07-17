@@ -1,4 +1,6 @@
 # Project files
+42_python*
+*venv
 tester.py
 *.jpg
 *.jpeg
